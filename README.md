@@ -1,1 +1,1 @@
-"# Calculator-Go" 
+# Calculator Go for Kata Academy
