@@ -8,7 +8,6 @@ import (
 	"strconv"
 	"strings"
 )
-
 func SplitStringAndGetSymbol(x string) ([]string, string) {
 	var operation string
 	var words []string
