@@ -78,10 +78,6 @@ func RomanToArabic(s string, RomanNum []string) string {
 	return res
 }
 
-func GetCharOfRomanNum(a int, RomanNum []string) string {
-	return RomanNum[a]
-}
-
 func Calc(a string, b string, symbol string, RomanNum []string) {
 	var resultRomanStr string
 	var x, y int
@@ -95,8 +91,8 @@ func Calc(a string, b string, symbol string, RomanNum []string) {
 		if result <= 0 {
 			panic(errors.New("В римской системе нет отрицательных чисел и нуля"))
 		}
-		keys := []int{100, 50, 40, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1}
-		MyMap := map[int]string{100: "C", 50: "L", 40: "XL", 10: "X", 9: "IX", 8: "VIII", 7: "VII", 6: "VI", 5: "V", 4: "IV", 3: "III", 2: "II", 1: "I"}
+		keys := []int{100, 90, 50, 40, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1}
+		MyMap := map[int]string{100: "C", 90: "XC", 50: "L", 40: "XL", 10: "X", 9: "IX", 8: "VIII", 7: "VII", 6: "VI", 5: "V", 4: "IV", 3: "III", 2: "II", 1: "I"}
 		for result > 0 {
 			for i := 0; i < len(keys); i++ {
 				x := result / keys[i]
