@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"regexp"
 	"slices"
 	"strconv"
 	"strings"
@@ -13,17 +14,14 @@ func SplitStringAndGetSymbol(x string) ([]string, string) {
 	var operation string
 	var array []string
 	if strings.Contains(x, "+") || strings.Contains(x, "-") || strings.Contains(x, "*") || strings.Contains(x, "/") {
+		array = regexp.MustCompile("[-+/*]").Split(x, -1)
 		if strings.Contains(x, "+") {
-			array = strings.Split(x, "+")
 			operation = "+"
 		} else if strings.Contains(x, "-") {
-			array = strings.Split(x, "-")
 			operation = "-"
 		} else if strings.Contains(x, "*") {
-			array = strings.Split(x, "*")
 			operation = "*"
 		} else if strings.Contains(x, "/") {
-			array = strings.Split(x, "/")
 			operation = "/"
 		}
 	} else {
@@ -61,7 +59,6 @@ func RomanToArabic(s string, RomanNum []string) string {
 
 func Calc(a string, b string, symbol string, RomanNum []string) {
 	var resultRomanStr string
-
 	x, errorA := strconv.Atoi(a)
 	y, errorB := strconv.Atoi(b)
 	if errorA == nil && errorB == nil && x <= 10 && x >= 1 && y <= 10 && y >= 1 {
@@ -97,7 +94,7 @@ func main() {
 	inputstring = strings.TrimSpace(inputstring)
 	inputstring = strings.ReplaceAll(inputstring, " ", "")
 	var array, operation = SplitStringAndGetSymbol(inputstring)
-	if len(array) > 2 || len(array) < 2 {
+	if len(array) != 2 || array[0] == "" || array[1] == "" {
 		panic("Введённая строка не является выражением. Введите два римских (I + I) или арабских числа (1 + 1) от 1 до 10 через пробел с операторами +,-,*,/")
 	}
 	a = array[0]
